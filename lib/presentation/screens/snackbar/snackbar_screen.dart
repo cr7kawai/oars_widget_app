@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SnackBarScreen extends StatelessWidget {
   const SnackBarScreen({super.key});
@@ -32,7 +33,7 @@ class SnackBarScreen extends StatelessWidget {
                 showAboutDialog(
                   context: context,
                   children: [
-                    const Text('Hola')
+                    const Text('Aute proident officia laborum adipisicing dolore tempor ipsum incididunt exercitation aliquip sunt minim deserunt irure. Sit et pariatur pariatur adipisicing ullamco tempor excepteur consequat incididunt nisi aute. Voluptate veniam in dolore adipisicing officia aliquip id voluptate proident. In quis quis qui tempor mollit quis nisi amet eiusmod. Sint et dolor ipsum tempor aliqua velit reprehenderit sint dolore cillum.')
                   ]
                 );
               },
@@ -40,7 +41,7 @@ class SnackBarScreen extends StatelessWidget {
             const SizedBox(height: 20,),
             FilledButton.tonal(
               child: const Text('Mostrar diálogo'),
-              onPressed: (){},
+              onPressed: () => openDialog(context),
             )
           ],
         ),
@@ -49,6 +50,28 @@ class SnackBarScreen extends StatelessWidget {
         label: const Text('Mostrar Snackbar'),
         icon: const Icon(Icons.remove_red_eye_outlined),
         onPressed: () => showCustomSnackBar(context), 
+      ),
+    );
+  }
+
+  void openDialog(BuildContext context){
+    // Builder es en tiempo de ejecución
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => AlertDialog(
+        title: const Text('¿Estás seguro?'),
+        content: const Text('Dest fugiat magna commodo nostrud. Excepteur nulla ad incididunt cillum aute voluptate adipisicing. Ad do eiusmod ullamco laboris sit et ipsum labore eu aliquip.'),
+        actions: [
+          TextButton(
+            onPressed: () => context.pop(),
+            child: const Text('Cancelar')
+          ),
+          FilledButton(
+            onPressed: () => context.pop(),
+            child: const Text('Aceptar')
+          )
+        ],
       ),
     );
   }
